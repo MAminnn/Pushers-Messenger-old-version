@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "صفحه ی اصلی - پاشرز";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body>
+
+    <div class="container-fluid bg-light px-3 py-5">
+        <div class="container-sm">
+            <h1 class="text-center display-6 mb-0">به چت‌روم پاشرز خوش آمدید</h1>
+            @if(User.Identity.Name != null) { <h3 class="text-center display-6 mb-0 mt-5">@User.Identity.Name</h3> }
+        </div>
+    </div>
+
+    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light shadow">
+        <div class="container-fluid flex-row-reverse">
+            <span class="navbar-brand h1 mb-0 unselectable">پاشرز</span>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="main-navbar" class="collapse navbar-collapse text-center">
+                <ul class="navbar-nav">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="Account">ثبت نام</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="Account">ورود</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Signout" asp-controller="Account">خروج</a>
+                        </li>
+                    }
+                    <li class="nav-item ms-sm-auto">
+                        <a class="nav-link" onclick="info()">درباره ما</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="ContactUs()">تماس با ما</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="mt-5">
+        <div class="container-sm">
+            <div class="row p-3 p-sm-0 row-cols-lg-4 row-cols-md-2 justify-content-around">
+                <div class="p-3 mx-auto my-2 card shadow-lg unselectable">
+                    <div class="card-body">
+                        <h1 class="text-center mb-0">رایگان</h1>
+                    </div>
+                    <img class="card-img-bottom" src="/images/mpimgs/free.svg" alt="fast">
+                </div>
+
+                <div class="p-3 mx-auto my-2 card shadow-lg unselectable">
+                    <div class="card-body">
+                        <h1 class="text-center mb-0">سریع</h1>
+                    </div>
+                    <img class="card-img-bottom" src="/images/mpimgs/fast-time.svg" alt="fast">
+                </div>
+
+                <div class="p-3 mx-auto my-2 card shadow-lg unselectable">
+                    <div class="card-body">
+                        <h1 class="text-center mb-0">مطمئن</h1>
+                    </div>
+                    <img class="card-img-bottom" src="~/images/mpimgs/security-purposes.svg" alt="fast">
+                </div>
+
+                <div class="p-3 mx-auto my-2 card shadow-lg unselectable">
+                    <div class="card-body">
+                        <h1 class="text-center mb-0">امن</h1>
+                    </div>
+                    <img class="card-img-bottom" src="/images/mpimgs/shield.svg" alt="fast">
+                </div>
+            </div>
+
+            <div class="d-grid m-3 mt-5">
+                <a class="btn btn-lg btn-info" asp-action="ChatRoom">ورود به صفحه چت‌روم</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+
+
+
+
+@section scripts{
+    <script src="/js/swal.js"></script>
+
+    <script>
+        function info() {
+            var span = document.createElement("span");
+            span.innerHTML = 'abc<br>efg'
+
+            Swal.fire({
+                icon: 'info',
+                title: ' درباره ی ما ',
+                html: 'دیزاینر : محمد مصطفی دستجردی  <br/> برنامه نویس : محمد امین کارویزی ',
+                footer: '<a href="https://crusaders.ir" class="link">&copy; 2023 - Crusaders</a>'
+
+            })
+        }
+        function ContactUs() {
+            Swal.fire({
+                icon: 'info',
+                title: 'تماس با ما',
+                html: 'محمد مصطفی دستجردی </br> آیدی تلگرام : mmd_program </br></br>محمد امین کارویزی </br> آیدی تلگرام : M_AminK </br> آیدی ایتا : Mamin84',
+                footer: '<a href="https://crusaders.ir" class="link">&copy; 2023 - Crusaders</a>'
+
+            })
+        }
+    </script>
+}
+@section styles{
+    <link href="/css/swal.css" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+}
+@section robots {
+    <meta name="robots" content="index, follow">
+}

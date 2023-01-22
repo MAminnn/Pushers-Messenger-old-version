@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "";
+}
+
+<html lang='fa-IR' class='theme-light default'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="چت روم آنلاین پاشرز همراه با استیکر و بخش پیوی با ارائه ی سرعت بسیار بالا و البته امنیت خوب">
+    <meta name="keywords" content="Pushers,چت روم,پاشرز">
+    <meta name="author" content="Karvizi">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://maminshop.ir/Home/Index" />
+    <title>ورود و ثبت نام - پاشرز</title>
+    <link href="~/css/account-styles.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <main class="container-sm my-3">
+        <ul class="nav nav-tabs nav-justified">
+            @if (ViewBag.pageType == "1")
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="#tab-register" data-bs-toggle="tab">ثبت نام</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#tab-login" data-bs-toggle="tab">ورود</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="#tab-login" data-bs-toggle="tab">ورود</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#tab-register" data-bs-toggle="tab">ثبت نام</a>
+                </li>
+
+
+            }
+        </ul>
+        <div class="tab-content p-3 border border-top-0 rounded-bottom">
+            @await Component.InvokeAsync("Register")
+            @await Component.InvokeAsync("Login")
+        </div>
+    </main>
+</body>
+
+</html>
+<script src="~/js/jquery-3.4.1.js"></script>
+<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script src="~/js/bootstrap.bundle.min.js"></script>

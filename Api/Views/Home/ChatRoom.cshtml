@@ -1,0 +1,101 @@
+﻿@{
+    Layout = "";
+}
+<html lang='fa-IR' class='theme-light default'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="چت روم آنلاین پاشرز همراه با استیکر و بخش پیوی با ارائه ی سرعت بسیار بالا و البته امنیت تضمینی">
+    <meta name="keywords" content="Pushers,چت روم,پاشرز">
+    <meta name="author" content="mamin">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://maminshop.ir/Home/Index" />
+    <link href="/css/haji.css" rel="stylesheet" />
+    <title>صفحه ی چت - پاشرز</title>
+</head>
+<body style="text-align:left">
+    <div id="tool-box">
+        <button id="this-user" class="toolbox-item no-outline font-icon">
+            &#xE77B;
+            <div id="UserName" class="user-name">username: @User.Identity.Name</div>
+        </button>
+        <button id="clear-history-button" class="toolbox-item no-outline font-icon hover-red" title="Ctrl + Delete" onclick="clearHistory()">&#xE74D;</button>
+        <button id="change-theme-button" class="toolbox-item no-outline font-icon hover-green" title="Ctrl + Alt + T" onclick="Theme.changeTheme()">&#xF08C;</button>
+        <button id="change-background-button" class="toolbox-item no-outline font-icon hover-purple toolbox-flex-left" title="Ctrl + Alt + B" onclick="OCBackPicker()">
+            &#xEB9F;
+            <div id="background-picker-wrapper" style="display: none" title="">
+                <div id="background-picker">
+                    <img src="/images/default.svg" alt="background" class="background-image" onclick="changeBackground('default')">
+                    <img src="/images/back1.jpg" alt="background" class="background-image" onclick="changeBackground(this)">
+                    <img src="/images/back2.jpg" alt="background" class="background-image" onclick="changeBackground(this)">
+                </div>
+            </div>
+        </button>
+        <button id="show-contacts-button" class="toolbox-item no-outline font-icon hover-blue toolbox-flex-left" title="Ctrl + Alt + C" onclick="OCContacts()">
+            &#xE8D4;
+            <span id="unread-count"></span>
+        </button>
+        <button style="display:none" id="other-user" class="toolbox-item no-outline font-icon toolbox-flex-left">
+            @*<div id="usercontact" class="font-icon user-name"></div>*@
+            &#xE77B;<div><div id="other-user-name"></div></div>
+        </button>
+
+
+    </div>
+
+    <div id="main-wrapper">
+        <div id="main">
+
+        </div>
+    </div>
+
+    <div id="message-box">
+        <button class="font-icon no-outline hover-dodgerblue" id="sticker" title="Ctrl + Alt + S" onclick="OCStickerBox()">&#xF4AA;</button>
+        <textarea name="message" rows="1" placeholder="پیامی بنویسید ..."></textarea>
+        <button class="font-icon no-outline hover-dodgerblue" id="send-message" title="Ctrl + Enter" onclick="sendMessage()">&#xE725;</button>
+    </div>
+
+    <div id="contacts-wrapper" style="display: none">
+        <div id="contacts">
+
+        </div>
+    </div>
+
+    <div id="sticker-picker-wrapper" style="display: none">
+        <div class="title">موفوفنز ریتینگ</div>
+        <div class="sticker-picker">
+            @foreach (var sticker in ViewBag.ratingstyleStickers)
+            {
+                <img src="/stickers/ratingstyle/@sticker.Name" alt="sticker" class="sticker" onclick="sendSticker('ratingstyle','@sticker.Name')">
+            }
+        </div>
+        <div class="title">سگ</div>
+        <div class="sticker-picker">
+            @foreach (var sticker in ViewBag.dogbynikarStickers)
+            {
+                <img src="/stickers/dogbynikar/@sticker.Name" alt="sticker" class="sticker" onclick="sendSticker('dogbynikar','@sticker.Name')">
+            }
+        </div>
+        <div class="title">پیشوا</div>
+        <div class="sticker-picker">
+            @foreach (var sticker in ViewBag.brazzershouseStickers)
+            {
+                <img src="/stickers/brazzershouse/@sticker.Name" alt="sticker" class="sticker" onclick="sendSticker('brazzershouse','@sticker.Name')">
+            }
+        </div>
+        <div class="title">متفرقه</div>
+        <div class="sticker-picker">
+            @foreach (var sticker in ViewBag.otherStickers)
+            {
+                <img src="/stickers/other/@sticker.Name" alt="sticker" class="sticker" onclick="sendSticker('other','@sticker.Name')">
+            }
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/js/jquery-3.4.1.js"></script>
+<script src="/lib/aspnet/signalr/dist/browser/signalr.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/signalr-service.js"></script>
+<script src="/js/Theme.js"></script>

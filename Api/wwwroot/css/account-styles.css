@@ -1,0 +1,50 @@
+﻿@charset "UTF-8";
+
+@font-face {
+    font-family: Sahel;
+    src: url("/fonts/Sahel.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: font-icon;
+    src: url("/fonts/icon.ttf") format("truetype");
+}
+
+* {
+    font-family: Sahel, sans-serif !important;
+}
+
+.font-icon {
+    font-family: font-icon !important;
+}
+
+.label-float-center {
+    left: 50% !important;
+    transform: translateX(-50%);
+}
+
+.form-floating > .form-control:focus ~ label.label-float-center,
+.form-floating > .form-control:not(:placeholder-shown) ~ label.label-float-center,
+.form-floating > .form-select ~ label.label-float-center {
+    transform: scale(.85) translateY(-.5rem) translateX(-50%) !important;
+}
+
+.form-control.is-invalid ~ label.label-float-center,
+.form-control.is-valid ~ label.label-float-center,
+.form-select.is-invalid ~ label.label-float-center,
+.form-select.is-valid ~ label.label-float-center {
+    left: calc(50% - .75rem) !important;
+}
+
+.form-floating > .form-control.is-invalid:focus ~ label.label-float-center,
+.form-floating > .form-control.is-valid:focus ~ label.label-float-center,
+.form-floating > .form-control.is-invalid:not(:placeholder-shown) ~ label.label-float-center,
+.form-floating > .form-control.is-valid:not(:placeholder-shown) ~ label.label-float-center,
+.form-floating > .form-select.is-invalid ~ label.label-float-center,
+.form-floating > .form-select.is-valid ~ label.label-float-center {
+    left: calc(50% - .75rem) !important;
+}
+
+.validation-error {
+    display: block !important;
+}

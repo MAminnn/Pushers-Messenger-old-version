@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "RegisterSuccess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert">
+    <p class="alert-success">ایمیلی حاوی لینک فعالسازی اکانت خود به شما ارسال گردید. لطفا با چک کردن ایمیل خود نسبت به فعالسازی اکانت اقدام فرمایید</p>
+</div>
+@section styles{
+    <link href="/css/emailcregisters.css" rel="stylesheet" />
+    <link href="/css/swal.css" rel="stylesheet" />
+
+ }
+
+@section scripts{ 
+<script src="~/js/sweetalert2.min.js"></script>
+<script src="~/js/swal.js"></script>
+<script>
+    window.onload = () => {
+        Swal.fire({
+            icon: 'info',
+            title: ' تایید ایمیل ',
+            text: 'ایمیلی حاوی کد لینک فعالسازی اکانت خود به شما ارسال شد',
+
+        })
+    };
+    function info() {
+        var span = document.createElement("span");
+        span.innerHTML = 'abc<br>efg'
+
+        Swal.fire({
+            icon: 'info',
+            title: ' درباره ی ما ',
+            html: 'دیزاینر : محمد مصطفی دستجردی  <br/> برنامه نویس : محمد امین کارویزی ',
+            footer: '<a href="http://mamindeve-001-site1.atempurl.com" class="link">دگر سایت ها (نیاز به فیلتر شکن دارد )</a>'
+
+        })
+    }
+    function ContactUs() {
+        Swal.fire({
+            icon: 'info',
+            title: 'تماس با ما',
+            html: 'محمد مصطفی دستجردی </br> آیدی تلگرام : mmd_program </br></br>محمد امین کارویزی </br> آیدی تلگرام : M_AminK </br> آیدی ایتا : Mamin84',
+            footer: '<a href="http://mamindeve-001-site1.atempurl.com" class="link">دگر سایت ها (نیاز به فیلتر شکن دارد )</a>'
+
+        })
+    }
+</script>
+}

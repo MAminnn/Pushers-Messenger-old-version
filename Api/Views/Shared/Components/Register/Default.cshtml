@@ -1,0 +1,119 @@
+﻿@model RegisterViewModel
+
+@if (ViewBag.pageType == "1")
+{
+    <div id="tab-register" class="tab-pane fade">
+
+        <form id="register-form" class="form hide-form" method="post" asp-controller="Account" asp-action="Register">
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="r-email" class="form-control has-validation text-center" type="text" required asp-for="rEmail" placeholder="email@example.com" onchange="ValidateEmail" onkeyup="ValidateEmail()">
+                <label for="r-email" class="label-float-center text-center">ایمیل</label>
+                <span asp-validation-for="rEmail" class="validation-error invalid-feedback text-center"></span>
+            </div>
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="r-username" type="text" class="form-control text-center" required asp-for="rUserName" placeholder="username" onkeyup="ValidateUserName()">
+                <label for="r-username" class="label-float-center text-center">نام کاربری</label>
+                <span asp-validation-for="rUserName" class="validation-error invalid-feedback text-center"></span>
+            </div>
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="r-password" type="password" class="form-control text-center" required asp-for="rPassword" placeholder="password" onkeyup="ValidatePassword()">
+                <label for="r-password" class="label-float-center text-center">رمز عبور</label>
+                <span asp-validation-for="rPassword" class="validation-error invalid-feedback text-danger text-center"></span>
+            </div>
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="r-password-conf" type="password" class="form-control text-center" required asp-for="ConfirmPassword" placeholder="password conf" onkeyup="ValidateCPassword()">
+                <label for="r-password-conf" class="label-float-center text-center">تکرار رمز عبور</label>
+                <span class="validation-error invalid-feedback text-center" id="vlidationcpsw" asp-validation-for="ConfirmPassword"></span>
+                <div class="validation-summery text-danger text-center" asp-validation-summary="ModelOnly"></div>
+            </div>
+            <div class="btn-group d-flex mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7">
+                <button type="submit" class="btn btn-outline-success col-6">ثبت</button>
+                <button type="reset" class="btn btn-outline-secondary col-6">پاک کردن</button>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div id="tab-register" class="tab-pane fade show active">
+
+        <form id="register-form" class="form hide-form" method="post" asp-controller="Account" asp-action="Register">
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="r-email" class="form-control has-validation text-center" type="text" required asp-for="rEmail" placeholder="email@example.com" onchange="ValidateEmail" onkeyup="ValidateEmail()">
+                <label for="r-email" class="label-float-center text-center">ایمیل</label>
+                <span asp-validation-for="rEmail" class="validation-error invalid-feedback text-center"></span>
+            </div>
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="r-username" type="text" class="form-control text-center" required asp-for="rUserName" placeholder="username" onkeyup="ValidateUserName()">
+                <label for="r-username" class="label-float-center text-center">نام کاربری</label>
+                <span asp-validation-for="rUserName" class="validation-error invalid-feedback text-center"></span>
+            </div>
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="r-password" type="password" class="form-control text-center" required asp-for="rPassword" placeholder="password" onkeyup="ValidatePassword()">
+                <label for="r-password" class="label-float-center text-center">رمز عبور</label>
+                <span asp-validation-for="rPassword" class="validation-error invalid-feedback text-danger text-center"></span>
+            </div>
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="r-password-conf" type="password" class="form-control text-center" required asp-for="ConfirmPassword" placeholder="password conf" onkeyup="ValidateCPassword()">
+                <label for="r-password-conf" class="label-float-center text-center">تکرار رمز عبور</label>
+                <span class="validation-error invalid-feedback text-center" id="vlidationcpsw" asp-validation-for="ConfirmPassword"></span>
+                <div class="validation-summery text-danger text-center" asp-validation-summary="ModelOnly"></div>
+            </div>
+            <div class="btn-group d-flex mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7">
+                <button type="submit" class="btn btn-outline-success col-6">ثبت</button>
+                <button type="reset" class="btn btn-outline-secondary col-6">پاک کردن</button>
+            </div>
+        </form>
+    </div>
+}
+
+<script>
+
+    function ValidateEmail() {
+        let email = $("#r-email").val().toString()
+
+        $.ajax({
+            url: "/account/ValidateEmailAsync", data: { email: email }, method: "GET"
+        }).done(function (res) {
+
+            $("#r-email").removeClass()
+            $("#r-email").addClass(res + " form-control text-center")
+        })
+    }
+    function ValidatePassword() {
+        let password = $("#r-password").val().toString()
+
+        $.ajax({
+            url: "/account/ValidatePasswordAsync", data: { password: password }, method: "GET"
+        }).done(function (res) {
+
+            $("#r-password").removeClass()
+            $("#r-password").addClass(res + " form-control text-center")
+        })
+    }
+    function ValidateUserName() {
+        let username = $("#r-username").val().toString()
+
+        $.ajax({
+            url: "/account/ValidateUsernameAsync", data: { username: username }, method: "GET"
+        }).done(function (res) {
+
+            $("#r-username").removeClass()
+            $("#r-username").addClass(res + " form-control text-center")
+        })
+    }
+    function ValidateCPassword() {
+        let Cpassword = $("#r-password-conf").val().toString()
+        let password = $("#r-password").val().toString()
+
+        if (Cpassword === password) {
+            $("#r-password-conf").removeClass()
+            $("#r-password-conf").addClass("is-valid" + " form-control text-center")
+        }
+        else {
+            $("#r-password-conf").removeClass()
+            $("#r-password-conf").addClass("is-invalid" + " form-control text-center")
+        }
+    }
+
+</script>

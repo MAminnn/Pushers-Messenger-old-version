@@ -1,0 +1,18 @@
+﻿.alert-success {
+    margin: auto !important;
+    color: green;
+}
+
+.alert {
+    flex-direction: column;
+    margin: auto !important;
+    justify-self: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    width: 50%;
+    height: 30%;
+    border-radius: 35px;
+    background-color: #a5dc86;
+}

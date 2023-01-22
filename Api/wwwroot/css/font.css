@@ -1,0 +1,7 @@
+﻿@font-face {
+    font-family:Sahel;
+    src:url('/fonts/Sahel.ttf') format('truetype')
+}
+*{
+    font-family:Sahel;
+}

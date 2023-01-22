@@ -1,0 +1,91 @@
+﻿@using Api.Models.ViewModels
+@model LoginViewModel
+@if (ViewBag.pageType == "1")
+{
+    <div id="tab-login" class="tab-pane fade show active">
+
+
+        <form id="login-form" class="form active-form" method="post" asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="@ViewBag.ReturnUrl">
+            @if (ViewBag.HasError != null)
+            {
+                <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                    <input id="l-username" asp-for="lUserName" class="form-control is-invalid text-center" required placeholder="username">
+                    <label for="l-username" class="text-center label-float-center">نام کاربری</label>
+                    <span asp-validation-for="lUserName" class="invalid-feedback text-center"></span>
+                    <span asp-validation-for="IsLockOut" class="invalid-feedback text-center"></span>
+                    <span asp-validation-for="IsNotAllowed" class="invalid-feedback text-center"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                    <input id="l-username" asp-for="lUserName" class="form-control text-center" required placeholder="username">
+                    <label for="l-username" class="text-center label-float-center">نام کاربری</label>
+                    <span asp-validation-for="lUserName" class="invalid-feedback text-center"></span>
+                </div>
+            }
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="l-password" asp-for="lPassword" type="password" class="form-control text-center" required placeholder="password">
+                <label for="l-password" class="text-center label-float-center">رمز عبور</label>
+                <span asp-validation-for="lPassword" class="invalid-feedback text-center"></span>
+            </div>
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <div class="form-check form-switch text-center">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" asp-for="lRememberMe">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">مرا به خاطر بسپار</label>
+                </div>
+            </div>
+            <div class="btn-group d-flex mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7">
+
+
+                <button type="submit" class="btn btn-outline-success col-6">ورود</button>
+                <button type="reset" class="btn btn-outline-secondary col-6">پاک کردن</button>
+            </div>
+
+        </form>
+    </div>
+}
+else
+{
+    <div id="tab-login" class="tab-pane fade">
+
+        <form id="login-form" class="form active-form" method="post" asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="@ViewBag.ReturnUrl">
+            @if (ViewBag.HasError != null)
+            {
+                <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                    <input id="l-username" asp-for="lUserName" class="form-control is-invalid text-center" required placeholder="username">
+                    <label for="l-username" class="text-center label-float-center">نام کاربری</label>
+                    <span asp-validation-for="lUserName" class="invalid-feedback text-center"></span>
+                    <span asp-validation-for="IsLockOut" class="invalid-feedback text-center"></span>
+                    <span asp-validation-for="IsNotAllowed" class="invalid-feedback text-center"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                    <input id="l-username" asp-for="lUserName" class="form-control text-center" required placeholder="username">
+                    <label for="l-username" class="text-center label-float-center">نام کاربری</label>
+                    <span asp-validation-for="lUserName" class="invalid-feedback text-center"></span>
+                </div>
+            }
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <input id="l-password" asp-for="lPassword" type="password" class="form-control text-center" required placeholder="password">
+                <label for="l-password" class="text-center label-float-center">رمز عبور</label>
+                <span asp-validation-for="lPassword" class="invalid-feedback text-center"></span>
+            </div>
+            <div class="form-floating mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7 mb-3">
+                <div class="form-check form-switch text-center">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" asp-for="lRememberMe">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">مرا به خاطر بسپار</label>
+                </div>
+            </div>
+            <div class="btn-group d-flex mx-auto col-xl-4 col-lg-5 col-md-6 col-sm-7">
+
+
+                <button type="submit" class="btn btn-outline-success col-6">ورود</button>
+                <button type="reset" class="btn btn-outline-secondary col-6">پاک کردن</button>
+            </div>
+
+        </form>
+    </div>
+}

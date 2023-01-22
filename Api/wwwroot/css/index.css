@@ -1,0 +1,27 @@
+﻿@charset "UTF-8";
+
+@font-face {
+    font-family: Sahel;
+    src: url("/fonts/Sahel.ttf");
+}
+
+@font-face {
+    font-family: font-icon;
+    src: url("/fonts/Sahel.ttf");
+}
+
+* {
+    font-family: Sahel, sans-serif !important;
+}
+
+.font-icon {
+    font-family: font-icon !important;
+}
+
+.unselectable {
+    user-select: none !important;
+}
+
+.nav-link{
+    cursor:pointer !important; 
+}

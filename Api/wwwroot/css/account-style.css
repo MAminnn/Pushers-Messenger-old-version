@@ -1,0 +1,269 @@
+﻿@charset "UTF-8";
+
+
+@font-face {
+    font-family: "Sahel";
+    src: url('/fonts/Sahel.ttf') format('truetype');
+}
+
+:root {
+    --shadow-color: #888;
+    --app-bdrs: 10px;
+    --html-bgc: lightgray;
+    --body-bgc: white;
+    --bg-overlay: white;
+}
+
+* {
+    font-family: Sahel;
+    margin: 0;
+    padding: 0;
+    transition: all .2s ease-in-out;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    background-color: #41a9fe;
+}
+
+body {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    overflow: hidden;
+    width: 70vh;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    border-radius: var(--app-bdrs);
+    background-color: var(--body-bgc);
+    box-shadow: 5px 0 5px var(--shadow-color), -5px 0 5px var(--shadow-color), 0 5px 5px var(--shadow-color), 0 -5px 5px var(--shadow-color);
+    grid-template-rows: auto 1fr;
+}
+
+#tab-bar {
+    z-index: 2;
+    display: grid;
+    user-select: none;
+    box-shadow: 0 3px 3px var(--shadow-color);
+    grid-template-columns: 1fr 1fr;
+}
+
+#tab-register {
+    border-top-left-radius: var(--app-bdrs);
+}
+
+#tab-login {
+    border-top-right-radius: var(--app-bdrs);
+}
+
+.tab-item {
+    line-height: 50px;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    opacity: .5;
+    background-color: transparent;
+    --anim-name: bd-bottom-fadeout;
+    --anim-delay: 0s;
+}
+
+.active-tab {
+    opacity: 1;
+    background-color: var(--bg-overlay);
+    --anim-name: bd-bottom-fadein;
+}
+
+.tab-item::after {
+    position: absolute;
+    bottom: -2px;
+    display: inline-block;
+    height: 2px;
+    content: '';
+    animation-name: var(--anim-name);
+    animation-duration: .2s;
+    animation-timing-function: ease-in-out;
+    animation-delay: var(--anim-delay);
+    background-color: blue;
+    box-shadow: 0 -5px 10px blue;
+    animation-fill-mode: forwards;
+}
+
+#tab-login::after {
+    left: 0;
+}
+
+#tab-register::after {
+    right: 0;
+}
+
+#container {
+    position: relative;
+    overflow: hidden;
+}
+
+.form {
+    position: absolute;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+}
+
+    .form > input {
+        z-index: 1;
+        margin: 10px auto;
+    }
+
+#login-form {
+    transform: translateX(0);
+}
+
+input[type=text], input[type=password], input[type=email] {
+    font-size: 16px;
+    line-height: 20px;
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid darkgray;
+    background-color: transparent;
+}
+
+    input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+        border-bottom: 2px solid deepskyblue;
+    }
+
+input[type=submit] {
+    font-size: 16px;
+    width: max-content;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #41a9fe;
+    border: 2px solid #41a9fe;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+    input[type=submit]:hover {
+        color: white;
+        background-color: #41a9fe;
+    }
+
+input + label {
+    font-size: 20px;
+    position: relative;
+    left: 50%;
+    display: inline-block;
+    width: max-content;
+    transform: translate(-50%, -150%);
+    color: darkgray;
+}
+
+input:focus + label, input:valid + label {
+    transform: translate(-50%, -250%) scale(.7, .7);
+    color: black;
+}
+
+label {
+    user-select: none;
+}
+
+/* other classes */
+.no-outline:focus {
+    outline: none;
+}
+
+#rememberme {
+    text-align: right;
+    font-size: 12px;
+    margin: 0px 13% 0px 0px;
+}
+
+input {
+    margin-bottom: 0px !important;
+}
+
+.validation-error {
+    text-align: center;
+    font-size: 12px;
+    color: red;
+    max-width:50%;
+    margin: 0px auto 8px auto;
+    padding: 0px 0px 5px 0px;
+}
+
+.validation-summery {
+    text-align: center;
+    font-size: 10px;
+    color: red;
+    padding-bottom: 5px;
+}
+/* responsive */
+@media (min-width: 70vh) and (max-height: 740px) {
+    .tab-item {
+        font-size: 13px;
+        line-height: 40px;
+    }
+
+    input[type=text], input[type=password], input[type=email] {
+        font-size: 13px;
+        line-height: 15px;
+        padding: 5px;
+    }
+
+    .form > input {
+        margin: 0 auto;
+        /*padding:1px;*/
+    }
+
+    input + label {
+        font-size: 15px;
+        transform: translate(-50%, -110%);
+    }
+
+    input:focus + label, input:valid + label {
+        transform: translate(-50%, -190%) scale(.7, .7);
+    }
+
+    input[type=submit] {
+        font-size: 13px;
+        padding: 5px 10px;
+    }
+}
+
+@media screen and (max-width: 70vh) {
+    :root {
+        --app-bdrs: 0;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* animation */
+@keyframes bd-bottom-fadein {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes bd-bottom-fadeout {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
+}
